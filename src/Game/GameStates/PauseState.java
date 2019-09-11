@@ -7,6 +7,8 @@ import UI.UIManager;
 
 import java.awt.*;
 
+import com.sun.glass.events.KeyEvent;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -27,7 +29,7 @@ public class PauseState extends State {
 
         uiManager.addObjects(new UIImageButton(56, 223+(64+16), 128, 64, Images.Options, () -> {
             handler.getMouseManager().setUimanager(null);
-            State.setState(handler.getGame().menuState);
+            State.setState(handler.getGame().menuState); //Maybe later add on options to pop up what one can do
         }));
 
         uiManager.addObjects(new UIImageButton(56, (223+(64+16))+(64+16), 128, 64, Images.BTitle, () -> {
@@ -49,10 +51,8 @@ public class PauseState extends State {
         if( count>=30){
             count=30;
         }
-        if(handler.getKeyManager().pbutt && count>=30){
-            count=0;
-
-            State.setState(handler.getGame().gameState);
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+            State.setState(handler.getGame().pauseState);
         }
 
 

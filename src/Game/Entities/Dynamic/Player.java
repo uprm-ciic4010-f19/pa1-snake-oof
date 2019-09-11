@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import javax.swing.JFrame;
+
+import Game.GameStates.State;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -56,7 +60,15 @@ public class Player {
         	tail=new Tail(xCoord, yCoord, handler);
         	handler.getWorld().body.addLast(tail);
         	handler.getWorld().playerLocation[tail.x][tail.y] = true; //Added the N key to add a tail.
-        }	
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)){
+        	handler.getGame().reStart(); //Added the R key to restart the game when it is game over.
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)){
+        	moveCounter++; //Added the - key so it slows down the snake.
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){
+        	moveCounter--; //Added the = key so it speeds up the snake.
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+            State.setState(handler.getGame().pauseState);
+        }
     }
 
     public void checkCollisionAndMove(){
@@ -243,7 +255,7 @@ public class Player {
                 handler.getWorld().playerLocation[i][j]=false;
 
             }
-        }
+        }  
     }
 
     public boolean isJustAte() {
