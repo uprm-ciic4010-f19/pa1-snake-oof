@@ -48,7 +48,7 @@ public class WorldOne extends WorldBase{
     @Override
     public void render(Graphics g){
         super.render(g);
-        player.render(g,playerLocation);
+        player.render(g,playerLocation); //Deleted the  grid that appeared white.
     }
 
 }

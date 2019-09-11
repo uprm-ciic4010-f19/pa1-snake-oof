@@ -50,9 +50,13 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
         	if(direction != "Left")
-            direction="Right";
-        }
-
+            direction="Right"; // Added the option to not go against the direction it is currently going.
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
+        	Tail tail=null;
+        	tail=new Tail(xCoord, yCoord, handler);
+        	handler.getWorld().body.addLast(tail);
+        	handler.getWorld().playerLocation[tail.x][tail.y] = true; //Added the N key to add a tail.
+        }	
     }
 
     public void checkCollisionAndMove(){
