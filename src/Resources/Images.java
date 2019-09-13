@@ -22,6 +22,7 @@ public class Images {
     public static ImageIcon icon;
     public static BufferedImage[] Slide1;
 	public static BufferedImage IMG_8010;
+	public static BufferedImage RIP;
 
     public Images() {
 
@@ -43,6 +44,7 @@ public class Images {
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
             IMG_8010= ImageIO.read(getClass().getResourceAsStream("/Buttons/IMG_8010.PNG"));
+            RIP = ImageIO.read(getClass().getResourceAsStream("/Buttons/RIP.PNG"));
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
 
