@@ -22,6 +22,7 @@ public class Player {
     public int speed;
     public double score;
     public int steps;
+    public boolean appleisGood;
 
     public int moveCounter;
 
@@ -35,7 +36,8 @@ public class Player {
         direction= "Right";
         justAte = false;
         lenght= 1;
-        speed=5;
+        speed=7;
+        score=0;
 
     }
 
@@ -74,7 +76,7 @@ public class Player {
         	speed--; //Added the = key so it speeds up the snake.
         
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
-            State.setState(handler.getGame().pauseState);
+            State.setState(handler.getGame().pauseState); //Added the PauseState
         }
     }
 
@@ -121,7 +123,7 @@ public class Player {
 
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
-            speed -=1;
+            speed -=1; //Last Student ID number is 7, so used speed equal as 7
         }
 
         if(!handler.getWorld().body.isEmpty()) {
@@ -166,6 +168,9 @@ public class Player {
 
             }
         }
+        g.setFont(new Font("Roman", Font.ROMAN_BASELINE, 30));
+        g.setColor(Color.WHITE);
+        g.drawString("Score: " + (int)handler.getWorld().player.score, 550, 30);
 
 
     }
