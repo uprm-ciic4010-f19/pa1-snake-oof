@@ -134,6 +134,17 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));
+            
+            // Game Over state when player collides with itself.
+            
+            
+            for(int i = 0; i <handler.getWorld().body.size(); i++ ) {
+            	if((yCoord == handler.getWorld().body.get(i).y) && (xCoord == handler.getWorld().body.get(i).x)) {
+            		kill();
+            		State.setState(handler.getGame().GameOverState);
+            		
+            	}
+            }
         }
 
     }
