@@ -2,8 +2,6 @@ package Game.GameStates;
 
 import java.awt.Graphics;
 
-import com.sun.glass.events.KeyEvent;
-
 import Main.Handler;
 import Resources.Images;
 import UI.UIImageButton;

@@ -6,8 +6,7 @@ import UI.UIImageButton;
 import UI.UIManager;
 
 import java.awt.*;
-
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -52,7 +51,7 @@ public class PauseState extends State {
             count=30;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
-            State.setState(handler.getGame().pauseState);
+                State.setState(handler.getGame().pauseState);
         }
 
 

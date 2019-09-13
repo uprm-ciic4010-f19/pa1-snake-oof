@@ -25,6 +25,7 @@ import java.io.InputStream;
 
 public class GameSetUp implements Runnable {
     public static final State GameOverState = null;
+	public static final State MenuState = null;
 	private DisplayScreen display;
     private int width, height;
     public String title;
