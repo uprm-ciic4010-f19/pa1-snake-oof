@@ -6,8 +6,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import javax.swing.JFrame;
-
 import Game.GameStates.State;
 
 /**
@@ -22,6 +20,12 @@ public class Player {
     public int xCoord;
     public int yCoord;
     public int speed;
+    public double score;
+    public int steps;
+    private boolean removed=false;
+    private Tail block;
+    private int last_x_location;
+    private int last_y_location;
 
     public int moveCounter;
 
@@ -121,6 +125,7 @@ public class Player {
 
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
+            speed -=1;
         }
 
         if(!handler.getWorld().body.isEmpty()) {
@@ -142,6 +147,14 @@ public class Player {
                             (j*handler.getWorld().GridPixelsize),
                             handler.getWorld().GridPixelsize,
                             handler.getWorld().GridPixelsize);
+                }
+                if(handler.getWorld().appleLocation[i][j]) {
+                	if(handler.getWorld().apple.isGood()) {
+                		g.setColor(Color.green);
+                	}else {
+                		g.setColor(Color.red);
+                	}
+                	g.fillRect((i*handler.getWorld().GridPixelsize),(j*handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize,handler.getWorld().GridPixelsize);
                 }
 
             }
@@ -254,8 +267,16 @@ public class Player {
                 }
                 break;
         }
-        handler.getWorld().body.addLast(tail);
+        if(handler.getWorld().apple.isGood()) {
+        	handler.getWorld().body.addLast(tail);
+        	score += Math.sqrt(2*score+1);
+        }else {
+        	if(handler.getWorld().body.size() <1) {
+        		State.setState(handler.getGame().gameState); // Have to add a Game Over State
+        	}
+        }
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+        steps=0;
     }
 
     public void kill(){
