@@ -23,6 +23,8 @@ public class Player {
     public double score;
     public int steps;
     public boolean appleisGood;
+    private int lastXlocation;
+    private int laxtYlocation;
 
     public int moveCounter;
 
@@ -38,6 +40,7 @@ public class Player {
         lenght= 1;
         speed=7;
         score=0;
+        appleisGood=true;
 
     }
 
@@ -45,6 +48,7 @@ public class Player {
         moveCounter++;
         if(moveCounter>=speed) {
             checkCollisionAndMove();
+            steps++;
             moveCounter=0;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
@@ -152,7 +156,10 @@ public class Player {
                 	}else {
                 		g.setColor(Color.red);
                 	}
-                	g.fillRect((i*handler.getWorld().GridPixelsize),(j*handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize,handler.getWorld().GridPixelsize);
+                	g.fillRect((i*handler.getWorld().GridPixelsize),
+                			(j*handler.getWorld().GridPixelsize),
+                			handler.getWorld().GridPixelsize,
+                			handler.getWorld().GridPixelsize);
                 }
 
             }
@@ -274,6 +281,10 @@ public class Player {
         }else {
         	if(handler.getWorld().body.size() <1) {
         		State.setState(handler.getGame().gameState); // Have to add a Game Over State
+        	}else {
+        		Tail block = handler.getWorld().body.pop();
+        		block.lostTail = true;
+        		score -= Math.sqrt(2*score+1);
         	}
         }
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
@@ -291,7 +302,7 @@ public class Player {
         }  
     }
 
-    public boolean isJustAte() {
+    public boolean getJustAte() {
         return justAte;
     }
 
