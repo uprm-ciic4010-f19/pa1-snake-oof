@@ -7,14 +7,14 @@ import UI.UIManager;
 
 public class OptionsState extends State {
 	
-	private UIManager uiManager;
+	private UIManager uiManager; //Created this file to add an Options image.
 	
 	public OptionsState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
 
-        uiManager.addObjects(new UIImageButton(56, 223, 128, 64, Images.BTitle, () -> {
+        uiManager.addObjects(new UIImageButton(56, 223, 128, 64, Images.Slide1, () -> {
             handler.getMouseManager().setUimanager(null);
         }));
 

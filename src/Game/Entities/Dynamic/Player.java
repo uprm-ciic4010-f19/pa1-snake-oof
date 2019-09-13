@@ -21,6 +21,7 @@ public class Player {
 
     public int xCoord;
     public int yCoord;
+    public int speed;
 
     public int moveCounter;
 
@@ -34,12 +35,13 @@ public class Player {
         direction= "Right";
         justAte = false;
         lenght= 1;
+        speed=5;
 
     }
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>=speed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -55,17 +57,22 @@ public class Player {
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
         	if(direction != "Left")
             direction="Right"; // Added the option to not go against the direction it is currently going.
+        
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
         	Tail tail=null;
         	tail=new Tail(xCoord, yCoord, handler);
         	handler.getWorld().body.addLast(tail);
         	handler.getWorld().playerLocation[tail.x][tail.y] = true; //Added the N key to add a tail.
+       
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)){
         	handler.getGame().reStart(); //Added the R key to restart the game when it is game over.
+        
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)){
-        	moveCounter++; //Added the - key so it slows down the snake.
+        	speed++; //Added the - key so it slows down the snake.
+        
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){
-        	moveCounter--; //Added the = key so it speeds up the snake.
+        	speed--; //Added the = key so it speeds up the snake.
+        
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
             State.setState(handler.getGame().pauseState);
         }
@@ -75,10 +82,11 @@ public class Player {
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
         int x = xCoord;
         int y = yCoord;
-        switch (direction){
+        switch (direction){ // In here I added the option where the snake spawns on the other side of the game when he hits the wall.
             case "Left":
                 if(xCoord==0){
                     kill();
+                    xCoord=handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     xCoord--;
                 }
@@ -86,6 +94,7 @@ public class Player {
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                    xCoord=0;
                 }else{
                     xCoord++;
                 }
@@ -93,6 +102,7 @@ public class Player {
             case "Up":
                 if(yCoord==0){
                     kill();
+                    yCoord=handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     yCoord--;
                 }
@@ -100,6 +110,7 @@ public class Player {
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                    yCoord=0;
                 }else{
                     yCoord++;
                 }
