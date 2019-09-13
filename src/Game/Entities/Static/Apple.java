@@ -25,7 +25,7 @@ public class Apple {
     }
     
     public boolean isGood() {
-    	if(handler.getWorld().player.steps >= 60) {
+    	if(handler.getWorld().player.steps >= 90) {
     		return false;
     	}else {
     		return true;
