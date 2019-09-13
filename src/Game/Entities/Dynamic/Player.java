@@ -22,10 +22,6 @@ public class Player {
     public int speed;
     public double score;
     public int steps;
-    private boolean removed=false;
-    private Tail block;
-    private int last_x_location;
-    private int last_y_location;
 
     public int moveCounter;
 

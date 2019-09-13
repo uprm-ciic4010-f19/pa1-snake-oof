@@ -15,8 +15,8 @@ public class Apple {
     public int yCoord;
     public double score;
     public double subtract;
-    private Player player;
-    private Graphics g;
+    public Player player;
+    public Graphics g;
 
     public Apple(Handler handler,int x, int y){
         this.handler=handler;
@@ -25,7 +25,7 @@ public class Apple {
     }
     
     public boolean isGood() {
-    	if(handler.getWorld().player.steps >= 80) {
+    	if(handler.getWorld().player.steps >= 60) {
     		return false;
     	}else {
     		return true;
