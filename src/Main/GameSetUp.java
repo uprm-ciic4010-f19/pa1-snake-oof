@@ -5,6 +5,7 @@ import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
 import Game.GameStates.PauseState;
 import Game.GameStates.OptionsState;
+import Game.GameStates.GameOverState;
 
 import Game.GameStates.State;
 import Input.KeyManager;
