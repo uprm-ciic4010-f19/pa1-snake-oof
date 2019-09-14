@@ -24,8 +24,6 @@ import java.io.InputStream;
  */
 
 public class GameSetUp implements Runnable {
-    public static final State GameOverState = null;
-	public static final State MenuState = null;
 	private DisplayScreen display;
     private int width, height;
     public String title;
@@ -50,6 +48,7 @@ public class GameSetUp implements Runnable {
     public State menuState;
     public State pauseState;
     public State OptionsState;
+    public State GameOverState;
     //Res.music
     private InputStream audioFile;
     private AudioInputStream audioStream;
@@ -86,6 +85,7 @@ public class GameSetUp implements Runnable {
         menuState = new MenuState(handler);
         pauseState = new PauseState(handler);
         OptionsState = new OptionsState(handler);
+        GameOverState = new GameOverState(handler);
         State.setState(menuState);
 
         try {
